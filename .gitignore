@@ -1,0 +1,9 @@
+*.pyc
+*~
+eggs/*
+*.egg
+*.egg-info
+dist/*
+docs/_build
+.tox/*
+.dir-locals.el
