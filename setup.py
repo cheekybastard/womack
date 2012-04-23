@@ -38,7 +38,11 @@ params = dict(
     url=URL,
     classifiers=CLASSIFIERS,
     keywords=KEYWORDS,
-    include_package_data=True
+    include_package_data=True,
+    data_files = [('etc/womack',
+                   ['requirements.txt', 'requirements-server.txt',
+                    'requirements-docs.txt', 'requirements-test.txt']),
+                  ('docs/womack', ['README.rst'])]
 )
 
 
