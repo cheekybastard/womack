@@ -10,9 +10,6 @@ from socketio.namespace import BaseNamespace
 from .config import config
 
 
-log = logging.getLogger(__name__)
-
-
 class Namespace(BaseNamespace):
     """Default namespace handler
 
@@ -37,11 +34,9 @@ class Namespace(BaseNamespace):
         for chan in channels:
             key = self.qualified_channel_name(chan)
             r.subscribe(key)
-            log.debug("subscribe: %s", key)
 
         for m in r.listen():
             try:
-                log.debug("receive: %s", m)
                 if m['type'] == 'message':
                     # de-qualify the channel name
                     channel = m['channel'].split(':')[-1]
@@ -49,7 +44,8 @@ class Namespace(BaseNamespace):
                     if channel in channels:
                         self.emit(channel, data)
             except Exception:
-                log.exception("Received invalid message %s", m)
+                logging.getLogger(__name__).exception(
+                    "Received invalid message %s", m)
 
     def on_subscribe(self, data):
         channels = data.get('channels', data.get('channel', ''))
