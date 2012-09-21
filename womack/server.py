@@ -13,6 +13,7 @@ from .config import config
 HERE = os.path.abspath(os.path.dirname(__file__))
 STATIC = os.path.join(HERE, 'static')
 
+
 app = Bottle()
 
 
@@ -43,13 +44,19 @@ def parse_argv(argv=None):
         import logging
         logging.basicConfig(level=logging.DEBUG)
         debug(True)
+    return opts
 
 
 def main(argv=None):
     """Parse command-line arguments and start the server"""
-    parse_argv(argv)
+    opts = parse_argv(argv)
+    if opts.debug:
+        from dozer import Dozer
+        app_ = Dozer(app)
+    else:
+        app_ = app
     server.SocketIOServer(
-        (config.host, config.port), app, policy_server=False).serve_forever()
+        (config.host, config.port), app_, policy_server=False).serve_forever()
 
 
 if __name__ == '__main__':
