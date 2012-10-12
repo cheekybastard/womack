@@ -31,6 +31,10 @@ Quickstart:
 
 3. Make a `virtualenv`_, then install dependencies with ``make server``
 
+   .. note ::
+
+      On Windows you may need to install gevent manually.
+
 4. Install Womack: ``python setup.py develop``
 
 5. Start womack server: ``womack``
