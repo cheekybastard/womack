@@ -2,7 +2,7 @@ import os
 
 HERE = os.path.abspath(os.path.dirname(__file__))
 NAME = 'womack'
-VERSION = '0.1'
+VERSION = '0.1.1'
 AUTHOR = 'Leapfrog Online'
 AUTHOR_EMAIL = 'oss@leapfrogdevelopment.com'
 PACKAGES = ['womack', 'womack.tests']
